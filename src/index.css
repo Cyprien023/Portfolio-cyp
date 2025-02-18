@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+
+body {
+    background-color: #ffffff; /* Fond clair */
+    color: #333333; /* Texte sombre */
+}
