@@ -1,7 +1,15 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap');
 
 
 body {
     background-color: #ffffff; /* Fond clair */
     color: #333333; /* Texte sombre */
 }
+
+.grape-nuts {
+    font-family: "Grape Nuts", cursive;
+    font-weight: 600;
+    font-style: normal;
+}
+
