@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Cloner le dépôt
       - name: Cloner le dépôt
         uses: actions/checkout@v4
 
