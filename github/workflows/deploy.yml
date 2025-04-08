@@ -3,10 +3,10 @@ name: Build & Deploy Docker Image and GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # Le workflow se déclenche sur chaque push vers la branche main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +24,8 @@ jobs:
       - name: Build de l'image Docker
         run: docker build -t cyprien23/mon-portfolio:latest .
 
-      # 4. Push sur Docker Hub
-      - name: Push sur Docker Hub
+      # 4. Push de l'image Docker vers Docker Hub
+      - name: Push de l'image Docker
         run: docker push cyprien23/mon-portfolio:latest
 
       # 5. Installer Node.js et les dépendances
@@ -45,20 +45,7 @@ jobs:
       - name: Vérifier le contenu du dossier dist
         run: ls -la ./dist
 
-      # 8. Créer la branche gh-pages si elle n'existe pas
-      - name: Créer la branche gh-pages si elle n'existe pas
-        run: |
-          git fetch --all
-          git checkout --orphan gh-pages || git checkout gh-pages
-
-      # 9. Force push sur gh-pages
-      - name: Force push to gh-pages
-        run: |
-          git add -A
-          git commit -m "Deploy to GitHub Pages"
-          git push --force origin gh-pages
-
-      # 10. Déployer sur GitHub Pages
+      # 8. Déployer sur GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
