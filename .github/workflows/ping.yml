@@ -1,0 +1,11 @@
+name: Ping Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "GitHub Actions fonctionne ✅"
