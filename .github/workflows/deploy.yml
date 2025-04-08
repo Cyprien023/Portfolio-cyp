@@ -9,6 +9,11 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
+
     steps:
       - name: Cloner le dépôt
         uses: actions/checkout@v4
@@ -42,7 +47,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-        permissions:
-          contents: write
-          pull-requests: write
-          actions: read
