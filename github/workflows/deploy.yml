@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Cloner le dépôt
       - name: Cloner le dépôt
         uses: actions/checkout@v4
         with:
@@ -40,14 +41,27 @@ jobs:
       - name: Build the app for GitHub Pages
         run: npm run build
 
+      # 7. Vérifier le contenu du dossier dist
       - name: Vérifier le contenu du dossier dist
         run: ls -la ./dist
 
-      # 7. Déployer sur GitHub Pages
+      # 8. Créer la branche gh-pages si elle n'existe pas
+      - name: Créer la branche gh-pages si elle n'existe pas
+        run: |
+          git fetch --all
+          git checkout --orphan gh-pages || git checkout gh-pages
+
+      # 9. Force push sur gh-pages
+      - name: Force push to gh-pages
+        run: |
+          git add -A
+          git commit -m "Deploy to GitHub Pages"
+          git push --force origin gh-pages
+
+      # 10. Déployer sur GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: gh-pages
-
