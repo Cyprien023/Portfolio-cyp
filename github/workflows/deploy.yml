@@ -40,6 +40,9 @@ jobs:
       - name: Build the app for GitHub Pages
         run: npm run build
 
+      - name: Vérifier le contenu du dossier dist
+        run: ls -la ./dist
+
       # 7. Déployer sur GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
