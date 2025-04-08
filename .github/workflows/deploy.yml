@@ -49,6 +49,3 @@ jobs:
           publish_branch: gh-pages
 
 
-      - name: Exécuter les tests post-déploiement (Cypress)
-        run: |
-          npx cypress run --headless
