@@ -43,5 +43,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Répertoire où Vite place la build
-          publish_branch: gh-pages  # Assure que les fichiers sont bien sur cette branche
+          publish_dir: ./dist
