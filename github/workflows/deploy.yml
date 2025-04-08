@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Cloner le dépôt
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       # 2. Connexion à Docker Hub
       - name: Connexion à Docker Hub
