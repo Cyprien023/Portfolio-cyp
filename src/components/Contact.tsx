@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
                 <p>
                     📞 <strong>Téléphone : </strong>
                     <a href="tel:+33782661409" className="text-blue-600 hover:underline">
-                        +33 7 82 66 14 09 test
+                        +33 7 82 66 14 09
                     </a>
                 </p>
                 <p>
