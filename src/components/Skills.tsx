@@ -13,6 +13,8 @@ const skills = [
     { name: "Docker", icon: "🐳" },
     { name: "Git", icon: "🔧" },
     { name: "Linux", icon: "🐧" },
+    { name: "Rust", icon: "🦀" },
+
 ];
 
 const Skills: React.FC = () => {
