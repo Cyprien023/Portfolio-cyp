@@ -6,7 +6,6 @@ interface Project {
     name: string;
     description: string;
     github: string;
-    image: string;
 }
 
 const Projects: React.FC = () => {
@@ -42,11 +41,6 @@ const Projects: React.FC = () => {
                         >
                             Voir sur GitHub
                         </a>
-                        <img
-                            src={project.image}
-                            alt={project.name}
-                            className="mt-4 rounded shadow-md"
-                        />
                     </div>
                 ))}
             </div>
