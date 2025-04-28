@@ -4,5 +4,9 @@ services:
   frontend:
     build: .
     ports:
-      - "3000:80"
-    depends_on: []
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
