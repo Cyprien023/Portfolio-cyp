@@ -15,7 +15,7 @@ const skills = [
     { name: "Git", icon: "🔧" },
     { name: "Linux", icon: "🐧" },
     { name: "Rust", icon: "🦀" },
-
+    { name: "Typescript", icon: "🟦" },
 ];
 
 const Skills: React.FC = () => {
