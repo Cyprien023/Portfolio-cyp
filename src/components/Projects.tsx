@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import * as React from "react";
 
 interface Project {
     id: number;

@@ -4,6 +4,7 @@ import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import SideBar from "./components/SideBar";
+import * as React from "react";
 
 const App: React.FC = () => {
     return (

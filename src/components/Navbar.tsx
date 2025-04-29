@@ -1,5 +1,6 @@
 import { Transition } from "@headlessui/react";
 import { useState, useEffect } from "react";
+import * as React from "react";
 
 const Navbar: React.FC = () => {
     const [isVisible, setIsVisible] = useState(true);

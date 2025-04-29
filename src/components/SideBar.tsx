@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import * as React from "react";
 
 const Sidebar: React.FC = () => {
     return (

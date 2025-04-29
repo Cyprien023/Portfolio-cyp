@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import * as React from "react";
 
 const skills = [
     { name: "HTML/CSS", icon: "🌐" },
