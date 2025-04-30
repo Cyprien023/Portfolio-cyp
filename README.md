@@ -29,7 +29,6 @@ nginx:alpine
 sur docker hub
 
 
-
 ---
 
 ## ✅ 2. **Conteneurisation (Docker)**
@@ -48,15 +47,6 @@ sur docker hub
 
 - Les variables d'environnement et secrets (tels que les identifiants pour Docker Hub) sont gérés via les **Secrets GitHub**. Cela permet de sécuriser les informations sensibles utilisées dans les workflows.
 
-### 2.4 **Optimisation / Healthchecks**
-
-
-
-
-### 2.5 **Persistance des Données**
-
-
-
 
 ---
 
@@ -66,17 +56,17 @@ sur docker hub
 
 - Un pipeline GitHub Actions est configuré et fonctionne bien pour effectuer des builds et pousser des images Docker sur Docker Hub. Les workflows suivants sont en place :
 
-    - **build.yml** : Effectue la construction de l'application.
+  - **build.yml** : Effectue la construction de l'application.
 
-    - **deploy.yml** : Gère le déploiement.
+  - **deploy.yml** : Gère le déploiement.
 
-    - **lint.yml** : Vérifie la qualité du code avec un linter.
+  - **lint.yml** : Vérifie la qualité du code avec un linter.
 
-    - **tests.yml** : Exécute les tests automatisés de l'application.
+  - **tests.yml** : Exécute les tests automatisés de l'application.
 
-    - **codeql.yml** : Effectue une analyse de sécurité du code.
+  - **codeql.yml** : Effectue une analyse de sécurité du code.
 
-    - **audit.yml** : Audite les dépendances pour détecter les vulnérabilités.
+  - **audit.yml** : Audite les dépendances pour détecter les vulnérabilités.
 
 
 ### 3.2 **Tests Automatisés**
@@ -94,8 +84,6 @@ sur docker hub
 - La vérification du code à chaque commit est bien configurée, en particulier avec l'intégration de **CodeQL** et des scanners de sécurité.
 
 
-### 3.5 **Notifications**
-
 
 
 ---
@@ -105,13 +93,6 @@ sur docker hub
 ### 4.1 **Déploiement GitHub Pages**
 
 - Le déploiement sur **GitHub Pages** fonctionne avec succès via le fichier `deploy.yml`. L'application est automatiquement déployée à chaque push sur la branche `main` / DockerHub.
-
-
-### 4.2 **Stratégie de Rollback / Blue/Green**
-
-
-
-### 4.3 **Tests Post-Déploiement**
 
 
 
@@ -124,9 +105,9 @@ sur docker hub
 
 - Il y a un fichier **`docker-compose.yml`** pour la gestion du développement local avec plusieurs services (par exemple, le frontend, le backend, la base de données).
 
-
-
-### 5.2 **Volumes / Persistance / Réseau**
+  `docker compose up`
+  backend-1   | Server running on http://localhost:5000
+  frontend-1  | http://localhost:59000/
 
 
 
