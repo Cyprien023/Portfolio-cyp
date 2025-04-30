@@ -1,50 +1,184 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- React
+- Vite
+- Typescript
+- Tailwindcss
+- nginx
+- node.js
+- express
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+### **1️⃣ Dockerise le projet**
+#### 📌  `Dockerfile`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+node:18-alpine
+build avec Vite
+nginx:alpine
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### **2️⃣ Gérer plusieurs conteneurs avec Docker Compose**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+#### **📌 `docker-compose.yml` **
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+
+### **3️⃣ Automatisation du build et déploiement avec GitHub Actions**
+#### 📌 `.github/workflows/deploy.yml` :
+
+sur docker hub
+
+
+
+---
+
+## ✅ 2. **Conteneurisation (Docker)**
+
+### 2.1 **Dockerfile**
+
+- Le fichier `Dockerfile` est présent, configuré et testé avec succès. Il contient les instructions nécessaires pour construire l'image Docker de l'application.
+
+
+### 2.2 **Docker Hub**
+
+- La configuration du projet pour effectuer des `push` d'images Docker vers Docker Hub via GitHub Actions est en place et fonctionne correctement.
+
+
+### 2.3 **Variables d'Environnement / Secrets**
+
+- Les variables d'environnement et secrets (tels que les identifiants pour Docker Hub) sont gérés via les **Secrets GitHub**. Cela permet de sécuriser les informations sensibles utilisées dans les workflows.
+
+### 2.4 **Optimisation / Healthchecks**
+
+
+
+
+### 2.5 **Persistance des Données**
+
+
+
+
+---
+
+## 🟡 3. **CI (Intégration Continue)**
+
+### 3.1 **GitHub Actions**
+
+- Un pipeline GitHub Actions est configuré et fonctionne bien pour effectuer des builds et pousser des images Docker sur Docker Hub. Les workflows suivants sont en place :
+
+    - **build.yml** : Effectue la construction de l'application.
+
+    - **deploy.yml** : Gère le déploiement.
+
+    - **lint.yml** : Vérifie la qualité du code avec un linter.
+
+    - **tests.yml** : Exécute les tests automatisés de l'application.
+
+    - **codeql.yml** : Effectue une analyse de sécurité du code.
+
+    - **audit.yml** : Audite les dépendances pour détecter les vulnérabilités.
+
+
+### 3.2 **Tests Automatisés**
+
+- Tous les tests sont automatisés et bien intégrés dans les workflows CI via GitHub Actions. Les tests incluent la vérification des performances, de la sécurité et de la qualité du code.
+
+
+### 3.3 **Analyse de Code / Scan de Sécurité**
+
+- La configuration pour l'analyse de la sécurité est en place via **CodeQL** et l'audit des dépendances avec **npm audit**. Ces outils vérifient les vulnérabilités dans le code source et les bibliothèques utilisées.
+
+
+### 3.4 **Vérification à Chaque Commit**
+
+- La vérification du code à chaque commit est bien configurée, en particulier avec l'intégration de **CodeQL** et des scanners de sécurité.
+
+
+### 3.5 **Notifications**
+
+
+
+---
+
+## 🟡 4. **CD (Déploiement Continu)**
+
+### 4.1 **Déploiement GitHub Pages**
+
+- Le déploiement sur **GitHub Pages** fonctionne avec succès via le fichier `deploy.yml`. L'application est automatiquement déployée à chaque push sur la branche `main` / DockerHub.
+
+
+### 4.2 **Stratégie de Rollback / Blue/Green**
+
+
+
+### 4.3 **Tests Post-Déploiement**
+
+
+
+
+---
+
+## 🟡 5. **Docker Compose**
+
+### 5.1 **Docker Compose pour Développement Local**
+
+- Il y a un fichier **`docker-compose.yml`** pour la gestion du développement local avec plusieurs services (par exemple, le frontend, le backend, la base de données).
+
+
+
+### 5.2 **Volumes / Persistance / Réseau**
+
+
+
+
+
+---
+
+## 🟡 6. **Kubernetes**
+
+
+### **Manifestes**
+- Manifeste frontend : deployment-frontend.yaml
+- Manifeste backend : deployment-backend.yaml
+  `kubectl apply -f k8s/deployments/deployment-frontend.yaml`
+  `kubectl apply -f k8s/deployments/deployment-backend.yaml`
+
+### **Gestions des secrets**
+- Secrets : backend-secrets.yaml
+  `kubectl apply -f k8s/secrets/backend-secrets.yaml`
+
+### **ConfigMap**
+- Configmap : configmap.yaml
+  `kubectl apply -f k8s/secrets/configmap.yaml`
+
+
+### **Health Checks**
+- Health Checks : deployment-backend.yaml
+  `kubectl apply -f k8s/deployments/deployment-backend.yaml`
+
+### **Persistance des données**
+- Persistance : persistance-volume.yaml
+  `kubectl apply -f k8s/persistance/persistance-volume.yaml`
+
+
+- pods, services, volumes
+- Configuration des Ressources (CPU, Mémoire) : **`requests`**, **`limits`**
+
+
+
+
+`kubectl get pods`
+`kubectl get services`
+![[Pasted image 20250428142305.png]]
+
+
+
+![[Pasted image 20250429164744.png]]
+
+
+
+
+
+### **Problèmes rencontrés :**
+- **pipeline github actions / github pages**
+- **codeql / audit**
